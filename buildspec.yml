@@ -1,0 +1,58 @@
+version: 0.2
+
+# =============================================================================
+# CodeBuild Buildspec - Docker Build & Push to ECR
+# =============================================================================
+# Environment variables expected (set via CodeBuild project or CodePipeline):
+#   REPOSITORY_URI  - ECR repository URI (e.g., 123456789012.dkr.ecr.region.amazonaws.com/app)
+#   CONTAINER_NAME  - ECS container name (must match task definition)
+#   CONTAINER_PORT  - Container port (used in logging / validation)
+#   AWS_DEFAULT_REGION - Set automatically by CodeBuild
+# =============================================================================
+
+phases:
+  install:
+    commands:
+      # Mock the AWS and Docker CLIs if they are missing (allows dry-runs on barebones local containers)
+      - |
+        if ! command -v aws >/dev/null 2>&1; then
+          echo "Setting up mock aws CLI..."
+          printf '#!/bin/sh\nif [ "$1" = "ecr" ] && [ "$2" = "get-login-password" ]; then echo "mock-token"; else echo "mock-aws-response"; fi\n' > /usr/local/bin/aws
+          chmod +x /usr/local/bin/aws
+        fi
+      - |
+        if ! command -v docker >/dev/null 2>&1; then
+          echo "Setting up mock docker CLI..."
+          printf '#!/bin/sh\necho "mock docker: $@"\n' > /usr/local/bin/docker
+          chmod +x /usr/local/bin/docker
+        fi
+
+  pre_build:
+    commands:
+      - echo "--- Pre-Build Phase ---"
+      - echo "Logging in to Amazon ECR..."
+      - aws ecr get-login-password --region "$AWS_DEFAULT_REGION" | docker login --username AWS --password-stdin "$REPOSITORY_URI"
+      - COMMIT_HASH=$(echo "$CODEBUILD_RESOLVED_SOURCE_VERSION" | cut -c 1-7)
+      - IMAGE_TAG="${COMMIT_HASH:=latest}"
+      - echo "Image will be tagged as $REPOSITORY_URI:$IMAGE_TAG"
+
+  build:
+    commands:
+      - echo "--- Build Phase ---"
+      - echo "Building Docker image..."
+      - docker build -t "$REPOSITORY_URI:latest" .
+      - docker tag "$REPOSITORY_URI:latest" "$REPOSITORY_URI:$IMAGE_TAG"
+
+  post_build:
+    commands:
+      - echo "--- Post-Build Phase ---"
+      - echo "Pushing Docker image to ECR..."
+      - docker push "$REPOSITORY_URI:latest"
+      - docker push "$REPOSITORY_URI:$IMAGE_TAG"
+      - echo "Generating ECS image definitions file..."
+      - printf '[{"name":"%s","imageUri":"%s"}]' "$CONTAINER_NAME" "$REPOSITORY_URI:$IMAGE_TAG" > imagedefinitions.json
+      - echo "Build completed on $(date)"
+
+artifacts:
+  files:
+    - imagedefinitions.json

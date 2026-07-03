@@ -1,0 +1,45 @@
+# =============================================================================
+# Root Configuration - tfvars.example
+# =============================================================================
+
+# AWS General Configuration
+aws_region   = "ap-southeast-1"
+project_name = "container-app"
+environment  = "dev"
+
+# -----------------------------------------------------------------------------
+# MODE A: Deploy into an Existing VPC
+# -----------------------------------------------------------------------------
+# Uncomment and fill these variables if you want to deploy into your pre-existing network.
+# vpc_id             = "vpc-xxxxxxxxxxxxxxxxx"
+# public_subnet_ids  = ["subnet-xxxxxxxxxxxxxxxxx", "subnet-yyyyyyyyyyyyyyyyy"]
+# private_subnet_ids = ["subnet-aaaaaaaaaaaaaaaaa", "subnet-bbbbbbbbbbbbbbbbb"]
+
+# -----------------------------------------------------------------------------
+# MODE B: Create a Fresh VPC (Default)
+# -----------------------------------------------------------------------------
+# Leave vpc_id null, and set your desired CIDR blocks for dynamic creation:
+vpc_cidr             = "10.0.0.0/16"
+public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnet_cidrs = ["10.0.10.0/24", "10.0.11.0/24"]
+
+# Application Container Settings
+container_image = "nginxdemos/hello:latest"
+container_port  = 80
+cpu             = 256
+memory          = 512
+desired_count   = 2
+
+# CI/CD Source Repository (GitHub)
+source_repository = "trigrd3/indico-devsecops-test" 
+source_branch     = "main"
+
+# TLS/SSL Load Balancer Configuration (Optional)
+enable_https    = false
+certificate_arn = ""
+
+# Resource Tags
+tags = {
+  DeploymentType = "devsecops-pipeline"
+  ManagedBy      = "terraform"
+}
