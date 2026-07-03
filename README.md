@@ -176,7 +176,27 @@ terraform fmt -recursive
 terraform validate
 ```
 
-### 5. Generate and Review Dry-Run Execution Plan
+### 5. Local Buildspec Validation (Dry-Run)
+You can validate the `buildspec.yml` file locally on your development machine using the AWS CodeBuild Local Agent:
+1.  **Configure environment variables:**
+    Copy the template environment file:
+    ```bash
+    cp local.env.example local.env
+    ```
+    *(Optional)* Edit `local.env` to configure dummy container values if needed.
+2.  **Execute the build agent script:**
+    Run the agent pointing to a lightweight public image:
+    ```bash
+    ./codebuild_build.sh -i ubuntu:latest -a ./artifacts -e local.env
+    ```
+3.  **Verify the output artifact:**
+    Extract and inspect the resulting JSON file:
+    ```bash
+    unzip artifacts/artifacts.zip -d artifacts/
+    cat artifacts/imagedefinitions.json
+    ```
+
+### 6. Generate and Review Dry-Run Execution Plan
 Generate and inspect the dry-run execution plan:
 ```bash
 terraform plan -out=tfplan.binary
