@@ -12,6 +12,8 @@ crash.*.log
 # Exclude sensitive vars
 *.tfvars
 *.tfvars.json
+*.env
+local.env
 
 # Ignore plan binary outputs, except tfplan.txt for submission
 *.binary

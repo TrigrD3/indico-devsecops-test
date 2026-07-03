@@ -149,7 +149,7 @@ Before executing this Terraform configuration, ensure you have:
 
 ### 1. Clone the Code
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/TrigrD3/indico-devsecops-test.git
 cd indico-devsecops-test
 ```
 
