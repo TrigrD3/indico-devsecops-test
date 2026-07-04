@@ -4,7 +4,7 @@
 [![AWS Provider](https://img.shields.io/badge/provider-aws-orange.svg)](https://registry.terraform.io/providers/hashicorp/aws/latest)
 [![Security Audited](https://img.shields.io/badge/security-audited-green.svg)](#security-best-practices-implemented)
 
-This repository contains reusable, modular, and highly secure AWS infrastructure written in Terraform. It provisions a complete container deployment and delivery system on AWS using ECS (Fargate) fronted by an Application Load Balancer (ALB), with a fully automated, serverless CI/CD pipeline.
+This repository contains reusable, modular, and highly secure AWS infrastructure written in Terraform. It provisions a complete, production-grade container deployment and delivery system on AWS. Following professional DevSecOps design patterns, the architecture is fully decoupled—provisioning a shared ECS Fargate Cluster that hosts multiple isolated applications (a public-facing App Web Service and a private API Backend Service) to optimize compute overhead. Ingress is managed via an Application Load Balancer (ALB), and delivery is driven by a serverless CI/CD pipeline (Source, Build, Deploy).
 
 ---
 
