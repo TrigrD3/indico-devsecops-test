@@ -42,12 +42,12 @@ output "target_group_arn" {
 # --- ECS ---
 output "ecs_cluster_name" {
   description = "Name of the ECS cluster."
-  value       = module.ecs.cluster_name
+  value       = module.ecs_service.cluster_name
 }
 
 output "ecs_service_name" {
   description = "Name of the ECS service."
-  value       = module.ecs.service_name
+  value       = module.ecs_service.service_name
 }
 
 # --- CodeBuild / CodePipeline ---

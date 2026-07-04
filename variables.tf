@@ -115,6 +115,37 @@ variable "certificate_arn" {
   default     = ""
 }
 
+# --- API Container Configuration (Second Service) ---
+variable "api_container_image" {
+  description = "Docker image for the backend API container."
+  type        = string
+  default     = "nginxdemos/hello:latest"
+}
+
+variable "api_container_port" {
+  description = "Port the backend API container listens on."
+  type        = number
+  default     = 8080
+}
+
+variable "api_cpu" {
+  description = "CPU units for the backend API Fargate task."
+  type        = number
+  default     = 256
+}
+
+variable "api_memory" {
+  description = "Memory (MiB) for the backend API Fargate task."
+  type        = number
+  default     = 512
+}
+
+variable "api_desired_count" {
+  description = "Number of ECS tasks to keep running for the API service."
+  type        = number
+  default     = 2
+}
+
 # --- Tags ---
 variable "tags" {
   description = "Additional tags applied to resources."

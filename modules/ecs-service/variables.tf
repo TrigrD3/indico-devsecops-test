@@ -169,60 +169,33 @@ variable "target_group_arn" {
 }
 
 #--------------------------------------------------------------
-# Capacity Provider Strategy
+# Decoupled ECS Cluster Inputs
 #--------------------------------------------------------------
 
-variable "capacity_providers" {
-  description = "List of capacity providers to associate with the cluster."
-  type        = list(string)
-  default     = ["FARGATE", "FARGATE_SPOT"]
+variable "app_name" {
+  description = "Name of this specific application service (e.g., frontend, backend)."
+  type        = string
+  default     = "app"
 
   validation {
-    condition     = length(var.capacity_providers) > 0
-    error_message = "At least one capacity provider must be specified."
+    condition     = can(regex("^[a-z0-9-]+$", var.app_name))
+    error_message = "app_name must contain only lowercase letters, numbers, and hyphens."
   }
 }
 
-variable "default_capacity_provider_strategy" {
-  description = <<-EOT
-    Default capacity provider strategy for the cluster.
-    Each element is an object with:
-      - capacity_provider: Name of the capacity provider (e.g., FARGATE).
-      - weight:            Relative weight for task placement.
-      - base:              Minimum number of tasks on this provider.
-  EOT
-  type = list(object({
-    capacity_provider = string
-    weight            = number
-    base              = number
-  }))
-  default = [
-    {
-      capacity_provider = "FARGATE"
-      weight            = 1
-      base              = 1
-    },
-    {
-      capacity_provider = "FARGATE_SPOT"
-      weight            = 2
-      base              = 0
-    }
-  ]
+variable "cluster_id" {
+  description = "ID of the shared ECS cluster."
+  type        = string
 }
 
-#--------------------------------------------------------------
-# Logging
-#--------------------------------------------------------------
+variable "cluster_name" {
+  description = "Name of the shared ECS cluster."
+  type        = string
+}
 
-variable "log_retention_in_days" {
-  description = "Number of days to retain CloudWatch log events."
-  type        = number
-  default     = 30
-
-  validation {
-    condition     = contains([1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 3653], var.log_retention_in_days)
-    error_message = "log_retention_in_days must be a valid CloudWatch retention value."
-  }
+variable "log_group_name" {
+  description = "Name of the shared CloudWatch log group."
+  type        = string
 }
 
 #--------------------------------------------------------------

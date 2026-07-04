@@ -22,16 +22,28 @@ graph TD
         end
         
         subgraph PrivateSubnets [Private Subnets]
-            ECSCluster[ECS Cluster]
-            ECSService[ECS Service]
-            ECSTask1[Fargate Task 1]
-            ECSTask2[Fargate Task 2]
+            ECSCluster[Shared ECS Cluster]
+            
+            subgraph WebServiceGroup [App Web Service]
+                ECSServiceApp[ECS Service: App]
+                ECSTaskApp1[Fargate Task: App 1]
+                ECSTaskApp2[Fargate Task: App 2]
+            end
+
+            subgraph APIServiceGroup [API Backend Service]
+                ECSServiceAPI[ECS Service: API]
+                ECSTaskAPI1[Fargate Task: API 1]
+                ECSTaskAPI2[Fargate Task: API 2]
+            end
         end
         
         subgraph DataTraffic [Service Routing]
-            ALB -->|Forward Target Group| ECSService
-            ECSService --> ECSTask1
-            ECSService --> ECSTask2
+            ALB -->|Forward Target Group| ECSServiceApp
+            ECSServiceApp --> ECSTaskApp1
+            ECSServiceApp --> ECSTaskApp2
+            ECSTaskApp1 -.->|Internal API Calls| ECSServiceAPI
+            ECSServiceAPI --> ECSTaskAPI1
+            ECSServiceAPI --> ECSTaskAPI2
         end
     end
 
@@ -66,7 +78,7 @@ graph TD
     DockerBuild -->|Produce imagedefinitions.json| S3Artifacts[(S3 Artifact Bucket)]
     
     Pipeline --> DeployStage
-    DeployAction -->|Pull image & update| ECSService
+    DeployAction -->|Pull image & update| ECSServiceApp
     ECR -.->|ECR Task Exec Pull| PrivateSubnets
     S3Artifacts -.->|Read artifacts| Pipeline
     
@@ -101,11 +113,15 @@ The codebase is organized following Terraform best practices, dividing major log
     │   ├── main.tf             # ALB, TG, Listener, HTTPS config
     │   ├── outputs.tf          # Target Group & DNS output
     │   └── variables.tf        # Healthcheck and security inputs
-    ├── ecs/                    # 3. Amazon ECS (Fargate) Module
-    │   ├── README.md           # ECS scaling, execution policy, vars
-    │   ├── main.tf             # Cluster, Service, Task Def, SGs, IAM roles
-    │   ├── outputs.tf          # Task and execution role identifiers
-    │   └── variables.tf        # Resources, CPU/Mem constraints, vars
+    ├── ecs-cluster/            # 3a. AWS ECS Cluster Module (Shared)
+    │   ├── main.tf             # Shared ECS Cluster and Log Group definitions
+    │   ├── variables.tf        # Capacity providers & log settings
+    │   └── outputs.tf          # Cluster ID, Name and Log Group outputs
+    ├── ecs-service/            # 3b. AWS ECS Service Module
+    │   ├── README.md           # Task sizing, execution policies, variables
+    │   ├── main.tf             # Service, Task Definition, security groups, IAM
+    │   ├── outputs.tf          # Service name, Task & Task Execution Role ARNs
+    │   └── variables.tf        # App-specific settings, CPU/Memory configurations
     ├── codebuild/              # 4. AWS CodeBuild Module
     │   ├── README.md           # CodeBuild compute, environment, vars
     │   ├── main.tf             # Project config, VPC networking, IAM role
@@ -126,7 +142,8 @@ Each module contains its own documentation describing variables and outputs. Bel
 
 *   **[VPC Module](./modules/vpc/README.md)**: Configures a 2-tier networking boundary with public subnets (spanned across multiple AZs) and private subnets, fronted by an Internet Gateway and an egress-only NAT Gateway to allow Fargate tasks to pull from ECR and send logs to CloudWatch securely.
 *   **[ALB Module (Optional)](./modules/alb/README.md)**: Configures an Application Load Balancer with configurable HTTP/HTTPS listeners, redirects HTTP traffic to HTTPS, sets up target groups for ECS Fargate routing, and establishes minimal-access security groups.
-*   **[ECS Module](./modules/ecs/README.md)**: Establishes a Fargate cluster, Task Definitions, and Service. Features dynamic load balancer association, capacity provider strategies (Fargate/Fargate Spot weights), deployment circuit breakers with rollback, ECS Exec enablement, and separate task / execution IAM roles.
+*   **[ECS Cluster Module](./modules/ecs-cluster/README.md)**: Provisions the shared ECS cluster with Container Insights, capacity provider strategies (Fargate/Fargate Spot weights), and CloudWatch logging configurations.
+*   **[ECS Service Module](./modules/ecs-service/README.md)**: Manages task definitions, ECS services, security groups, and IAM roles. Features dynamic load balancer target group association, rollback circuit breakers, and ECS Exec terminal debugging.
 *   **[CodeBuild Module](./modules/codebuild/README.md)**: Deploys a Docker build environment featuring Local Layer Caching, dynamic IAM policy scanning (automatically grants Secrets Manager or parameter store reads based on defined env variables), and optional VPC integration for database migrations.
 *   **[CodePipeline Module](./modules/codepipeline/README.md)**: Wires the delivery pipeline with Source (GitHub via CodeStar connection), Build (CodeBuild), and Deploy (ECS Service deployment) stages. Includes a fully hardened S3 bucket with public access blocks, versioning, SSE-S3 encryption, and lifecycle management.
 
@@ -247,11 +264,16 @@ CodePipeline will pause at the **Source** stage until you authorize the CodeStar
 | `vpc_cidr` | `string` | `"10.0.0.0/16"` | CIDR block for the created VPC. |
 | `public_subnet_cidrs`| `list(string)` | `["10.0.1.0/24", "10.0.2.0/24"]` | CIDR blocks for public subnets (min 2). |
 | `private_subnet_cidrs`| `list(string)`| `["10.0.10.0/24", "10.0.11.0/24"]`| CIDR blocks for private subnets (min 2). |
-| `container_image` | `string` | `"nginxdemos/hello:latest"`| Docker image URI for the application container. |
-| `container_port` | `number` | `80` | Port container app binds to. |
-| `cpu` | `number` | `256` | Fargate CPU units (256, 512, 1024, 2048, 4096). |
-| `memory` | `number` | `512` | Fargate Memory MiB (compatible with CPU value). |
-| `desired_count` | `number` | `2` | Number of active task replicas. |
+| `container_image` | `string` | `"nginxdemos/hello:latest"`| Docker image URI for the primary application container. |
+| `container_port` | `number` | `80` | Port the primary application container binds to. |
+| `cpu` | `number` | `256` | Fargate CPU units for the primary application task. |
+| `memory` | `number` | `512` | Fargate Memory MiB for the primary application task. |
+| `desired_count` | `number` | `2` | Number of active task replicas for the primary application. |
+| `api_container_image` | `string` | `"nginxdemos/hello:latest"`| Docker image URI for the backend API container. |
+| `api_container_port` | `number` | `8080` | Port the backend API container binds to. |
+| `api_cpu` | `number` | `256` | Fargate CPU units for the backend API task. |
+| `api_memory` | `number` | `512` | Fargate Memory MiB for the backend API task. |
+| `api_desired_count` | `number` | `2` | Number of active task replicas for the API backend service. |
 | `source_repository` | `string` | *Required* | Git source repository in `'owner/repo'` format. |
 | `source_branch` | `string` | `"main"` | Code branch triggers pipeline execution. |
 | `enable_https` | `bool` | `false` | Toggles HTTPS listener config on ALB. |

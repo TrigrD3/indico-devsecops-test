@@ -53,8 +53,12 @@ Production-ready Terraform module for deploying containerized applications on **
 module "ecs" {
   source = "./modules/ecs"
 
-  project_name    = "my-api"
+  project_name    = "my-project"
   environment     = "dev"
+  app_name        = "frontend"
+  cluster_id      = module.ecs_cluster.cluster_id
+  cluster_name    = module.ecs_cluster.cluster_name
+  log_group_name  = module.ecs_cluster.log_group_name
   vpc_id          = "vpc-0abc1234def56789a"
   subnet_ids      = ["subnet-aaa", "subnet-bbb"]
   container_image = "123456789012.dkr.ecr.us-east-1.amazonaws.com/my-api:latest"

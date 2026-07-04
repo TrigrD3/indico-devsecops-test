@@ -43,12 +43,25 @@ module "alb" {
   tags                       = var.tags
 }
 
-# --- ECS Module ---
-module "ecs" {
-  source = "./modules/ecs"
+# --- ECS Cluster Module (Shared) ---
+module "ecs_cluster" {
+  source = "./modules/ecs-cluster"
+
+  project_name = var.project_name
+  environment  = var.environment
+  tags         = var.tags
+}
+
+# --- ECS Service Module ---
+module "ecs_service" {
+  source = "./modules/ecs-service"
 
   project_name           = var.project_name
   environment            = var.environment
+  app_name               = "app"
+  cluster_id             = module.ecs_cluster.cluster_id
+  cluster_name           = module.ecs_cluster.cluster_name
+  log_group_name         = module.ecs_cluster.log_group_name
   vpc_id                 = local.vpc_id
   subnet_ids             = local.private_subnet_ids
   container_image        = var.container_image
@@ -57,6 +70,29 @@ module "ecs" {
   memory                 = var.memory
   desired_count          = var.desired_count
   target_group_arn       = module.alb.target_group_arn
+  allowed_cidr_blocks    = ["10.0.0.0/8"]
+  enable_execute_command = true
+  tags                   = var.tags
+}
+
+# --- ECS Service Module (API Backend) ---
+module "ecs_service_api" {
+  source = "./modules/ecs-service"
+
+  project_name           = var.project_name
+  environment            = var.environment
+  app_name               = "api"
+  cluster_id             = module.ecs_cluster.cluster_id
+  cluster_name           = module.ecs_cluster.cluster_name
+  log_group_name         = module.ecs_cluster.log_group_name
+  vpc_id                 = local.vpc_id
+  subnet_ids             = local.private_subnet_ids
+  container_image        = var.api_container_image
+  container_port         = var.api_container_port
+  cpu                    = var.api_cpu
+  memory                 = var.api_memory
+  desired_count          = var.api_desired_count
+  target_group_arn       = "" # Private/Internal API, not exposed to the ALB
   allowed_cidr_blocks    = ["10.0.0.0/8"]
   enable_execute_command = true
   tags                   = var.tags
@@ -82,7 +118,7 @@ module "codebuild" {
     },
     {
       name  = "CONTAINER_NAME"
-      value = "${var.project_name}-${var.environment}"
+      value = "${var.project_name}-${var.environment}-app-container"
       type  = "PLAINTEXT"
     },
     {
@@ -104,8 +140,8 @@ module "codepipeline" {
   source_repository      = var.source_repository
   source_branch          = var.source_branch
   codebuild_project_name = module.codebuild.project_name
-  ecs_cluster_name       = module.ecs.cluster_name
-  ecs_service_name       = module.ecs.service_name
+  ecs_cluster_name       = module.ecs_service.cluster_name
+  ecs_service_name       = module.ecs_service.service_name
   enable_deploy_stage    = true
   tags                   = var.tags
 }

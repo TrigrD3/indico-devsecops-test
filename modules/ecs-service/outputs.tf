@@ -4,17 +4,17 @@
 
 output "cluster_id" {
   description = "ID of the ECS cluster."
-  value       = aws_ecs_cluster.this.id
+  value       = var.cluster_id
 }
 
 output "cluster_arn" {
   description = "ARN of the ECS cluster."
-  value       = aws_ecs_cluster.this.arn
+  value       = var.cluster_id
 }
 
 output "cluster_name" {
   description = "Name of the ECS cluster."
-  value       = aws_ecs_cluster.this.name
+  value       = var.cluster_name
 }
 
 ################################################################################
@@ -79,5 +79,5 @@ output "task_role_arn" {
 
 output "log_group_name" {
   description = "Name of the CloudWatch log group for container logs."
-  value       = aws_cloudwatch_log_group.this.name
+  value       = var.log_group_name
 }

@@ -23,12 +23,19 @@ vpc_cidr             = "10.0.0.0/16"
 public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24"]
 private_subnet_cidrs = ["10.0.10.0/24", "10.0.11.0/24"]
 
-# Application Container Settings
+# Application Container Settings (First Service - App)
 container_image = "nginxdemos/hello:latest"
 container_port  = 80
 cpu             = 256
 memory          = 512
 desired_count   = 2
+
+# Application Container Settings (Second Service - API)
+api_container_image = "nginxdemos/hello:latest"
+api_container_port  = 8080
+api_cpu             = 256
+api_memory          = 512
+api_desired_count   = 2
 
 # CI/CD Source Repository (GitHub)
 source_repository = "trigrd3/indico-devsecops-test" 

@@ -31,20 +31,18 @@ Terraform will perform the following actions:
       + security_groups                                              = (known after apply)
       + subnets                                                      = (known after apply)
       + tags                                                         = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Name"        = "container-app-dev-alb"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Name"           = "container-app-dev-alb"
+          + "Project"        = "container-app"
         }
       + tags_all                                                     = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Name"        = "container-app-dev-alb"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Name"           = "container-app-dev-alb"
+          + "Project"        = "container-app"
         }
       + vpc_id                                                       = (known after apply)
       + xff_header_processing_mode                                   = "append"
@@ -79,20 +77,18 @@ Terraform will perform the following actions:
       + routing_http_response_x_frame_options_header_value                    = (known after apply)
       + ssl_policy                                                            = (known after apply)
       + tags                                                                  = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Name"        = "container-app-dev-http-listener"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Name"           = "container-app-dev-http-listener"
+          + "Project"        = "container-app"
         }
       + tags_all                                                              = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Name"        = "container-app-dev-http-listener"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Name"           = "container-app-dev-http-listener"
+          + "Project"        = "container-app"
         }
       + tcp_idle_timeout_seconds                                              = (known after apply)
 
@@ -125,20 +121,18 @@ Terraform will perform the following actions:
       + proxy_protocol_v2                  = false
       + slow_start                         = 0
       + tags                               = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Name"        = "container-app-dev-tg"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Name"           = "container-app-dev-tg"
+          + "Project"        = "container-app"
         }
       + tags_all                           = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Name"        = "container-app-dev-tg"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Name"           = "container-app-dev-tg"
+          + "Project"        = "container-app"
         }
       + target_type                        = "ip"
       + vpc_id                             = (known after apply)
@@ -209,20 +203,18 @@ Terraform will perform the following actions:
       + owner_id               = (known after apply)
       + revoke_rules_on_delete = false
       + tags                   = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Name"        = "container-app-dev-alb-sg"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Name"           = "container-app-dev-alb-sg"
+          + "Project"        = "container-app"
         }
       + tags_all               = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Name"        = "container-app-dev-alb-sg"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Name"           = "container-app-dev-alb-sg"
+          + "Project"        = "container-app"
         }
       + vpc_id                 = (known after apply)
     }
@@ -237,22 +229,20 @@ Terraform will perform the following actions:
       + retention_in_days = 90
       + skip_destroy      = false
       + tags              = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codebuild"
-          + "Name"        = "container-app-dev-build-logs"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codebuild"
+          + "Name"           = "container-app-dev-build-logs"
+          + "Project"        = "container-app"
         }
       + tags_all          = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codebuild"
-          + "Name"        = "container-app-dev-build-logs"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codebuild"
+          + "Name"           = "container-app-dev-build-logs"
+          + "Project"        = "container-app"
         }
     }
 
@@ -272,22 +262,20 @@ Terraform will perform the following actions:
       + queued_timeout         = 60
       + service_role           = (known after apply)
       + tags                   = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codebuild"
-          + "Name"        = "container-app-dev"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codebuild"
+          + "Name"           = "container-app-dev"
+          + "Project"        = "container-app"
         }
       + tags_all               = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codebuild"
-          + "Name"        = "container-app-dev"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codebuild"
+          + "Name"           = "container-app-dev"
+          + "Project"        = "container-app"
         }
 
       + artifacts {
@@ -319,7 +307,7 @@ Terraform will perform the following actions:
           + environment_variable {
               + name  = "CONTAINER_NAME"
               + type  = "PLAINTEXT"
-              + value = "container-app-dev"
+              + value = "container-app-dev-app-container"
             }
           + environment_variable {
               + name  = "CONTAINER_PORT"
@@ -373,22 +361,20 @@ Terraform will perform the following actions:
       + name_prefix           = (known after apply)
       + path                  = "/"
       + tags                  = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codebuild"
-          + "Name"        = "container-app-dev-codebuild-role"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codebuild"
+          + "Name"           = "container-app-dev-codebuild-role"
+          + "Project"        = "container-app"
         }
       + tags_all              = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codebuild"
-          + "Name"        = "container-app-dev-codebuild-role"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codebuild"
+          + "Name"           = "container-app-dev-codebuild-role"
+          + "Project"        = "container-app"
         }
       + unique_id             = (known after apply)
     }
@@ -411,22 +397,20 @@ Terraform will perform the following actions:
       + pipeline_type  = "V1"
       + role_arn       = (known after apply)
       + tags           = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codepipeline"
-          + "Name"        = "container-app-dev-pipeline"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codepipeline"
+          + "Name"           = "container-app-dev-pipeline"
+          + "Project"        = "container-app"
         }
       + tags_all       = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codepipeline"
-          + "Name"        = "container-app-dev-pipeline"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codepipeline"
+          + "Name"           = "container-app-dev-pipeline"
+          + "Project"        = "container-app"
         }
       + trigger_all    = (known after apply)
 
@@ -482,7 +466,7 @@ Terraform will perform the following actions:
               + configuration   = {
                   + "ClusterName" = "container-app-dev-cluster"
                   + "FileName"    = "imagedefinitions.json"
-                  + "ServiceName" = "container-app-dev-service"
+                  + "ServiceName" = "container-app-dev-app-service"
                 }
               + input_artifacts = [
                   + "build_output",
@@ -505,22 +489,20 @@ Terraform will perform the following actions:
       + name              = "container-app-dev-github"
       + provider_type     = "GitHub"
       + tags              = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codepipeline"
-          + "Name"        = "container-app-dev-github-connection"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codepipeline"
+          + "Name"           = "container-app-dev-github-connection"
+          + "Project"        = "container-app"
         }
       + tags_all          = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codepipeline"
-          + "Name"        = "container-app-dev-github-connection"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codepipeline"
+          + "Name"           = "container-app-dev-github-connection"
+          + "Project"        = "container-app"
         }
     }
 
@@ -551,22 +533,20 @@ Terraform will perform the following actions:
       + name_prefix           = (known after apply)
       + path                  = "/"
       + tags                  = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codepipeline"
-          + "Name"        = "container-app-dev-codepipeline-role"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codepipeline"
+          + "Name"           = "container-app-dev-codepipeline-role"
+          + "Project"        = "container-app"
         }
       + tags_all              = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codepipeline"
-          + "Name"        = "container-app-dev-codepipeline-role"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codepipeline"
+          + "Name"           = "container-app-dev-codepipeline-role"
+          + "Project"        = "container-app"
         }
       + unique_id             = (known after apply)
     }
@@ -597,22 +577,20 @@ Terraform will perform the following actions:
       + region                      = (known after apply)
       + request_payer               = (known after apply)
       + tags                        = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codepipeline"
-          + "Name"        = "container-app-dev-codepipeline-artifacts"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codepipeline"
+          + "Name"           = "container-app-dev-codepipeline-artifacts"
+          + "Project"        = "container-app"
         }
       + tags_all                    = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "codepipeline"
-          + "Name"        = "container-app-dev-codepipeline-artifacts"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "codepipeline"
+          + "Name"           = "container-app-dev-codepipeline-artifacts"
+          + "Project"        = "container-app"
         }
       + website_domain              = (known after apply)
       + website_endpoint            = (known after apply)
@@ -682,7 +660,7 @@ Terraform will perform the following actions:
         }
     }
 
-  # module.ecs.aws_cloudwatch_log_group.this will be created
+  # module.ecs_cluster.aws_cloudwatch_log_group.this will be created
   + resource "aws_cloudwatch_log_group" "this" {
       + arn               = (known after apply)
       + id                = (known after apply)
@@ -692,47 +670,43 @@ Terraform will perform the following actions:
       + retention_in_days = 30
       + skip_destroy      = false
       + tags              = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "/ecs/container-app-dev"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs-cluster"
+          + "Name"           = "/ecs/container-app-dev"
+          + "Project"        = "container-app"
         }
       + tags_all          = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "/ecs/container-app-dev"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs-cluster"
+          + "Name"           = "/ecs/container-app-dev"
+          + "Project"        = "container-app"
         }
     }
 
-  # module.ecs.aws_ecs_cluster.this will be created
+  # module.ecs_cluster.aws_ecs_cluster.this will be created
   + resource "aws_ecs_cluster" "this" {
       + arn      = (known after apply)
       + id       = (known after apply)
       + name     = "container-app-dev-cluster"
       + tags     = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-cluster"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs-cluster"
+          + "Name"           = "container-app-dev-cluster"
+          + "Project"        = "container-app"
         }
       + tags_all = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-cluster"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs-cluster"
+          + "Name"           = "container-app-dev-cluster"
+          + "Project"        = "container-app"
         }
 
       + setting {
@@ -741,7 +715,7 @@ Terraform will perform the following actions:
         }
     }
 
-  # module.ecs.aws_ecs_cluster_capacity_providers.this will be created
+  # module.ecs_cluster.aws_ecs_cluster_capacity_providers.this will be created
   + resource "aws_ecs_cluster_capacity_providers" "this" {
       + capacity_providers = [
           + "FARGATE",
@@ -753,7 +727,7 @@ Terraform will perform the following actions:
       + default_capacity_provider_strategy {
           + base              = 0
           + capacity_provider = "FARGATE_SPOT"
-          + weight            = 2
+          + weight            = 1
         }
       + default_capacity_provider_strategy {
           + base              = 1
@@ -762,7 +736,7 @@ Terraform will perform the following actions:
         }
     }
 
-  # module.ecs.aws_ecs_service.this will be created
+  # module.ecs_service.aws_ecs_service.this will be created
   + resource "aws_ecs_service" "this" {
       + availability_zone_rebalancing      = "DISABLED"
       + cluster                            = (known after apply)
@@ -774,26 +748,26 @@ Terraform will perform the following actions:
       + iam_role                           = (known after apply)
       + id                                 = (known after apply)
       + launch_type                        = "FARGATE"
-      + name                               = "container-app-dev-service"
+      + name                               = "container-app-dev-app-service"
       + platform_version                   = (known after apply)
       + scheduling_strategy                = "REPLICA"
       + tags                               = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-service"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-service"
+          + "Project"        = "container-app"
         }
       + tags_all                           = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-service"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-service"
+          + "Project"        = "container-app"
         }
       + task_definition                    = (known after apply)
       + triggers                           = (known after apply)
@@ -811,7 +785,7 @@ Terraform will perform the following actions:
         }
     }
 
-  # module.ecs.aws_ecs_task_definition.this will be created
+  # module.ecs_service.aws_ecs_task_definition.this will be created
   + resource "aws_ecs_task_definition" "this" {
       + arn                      = (known after apply)
       + arn_without_revision     = (known after apply)
@@ -839,7 +813,7 @@ Terraform will perform the following actions:
                           + awslogs-stream-prefix = "ecs"
                         }
                     }
-                  + name             = "container-app-dev-container"
+                  + name             = "container-app-dev-app-container"
                   + portMappings     = [
                       + {
                           + containerPort = 80
@@ -853,7 +827,7 @@ Terraform will perform the following actions:
       + cpu                      = "256"
       + enable_fault_injection   = (known after apply)
       + execution_role_arn       = (known after apply)
-      + family                   = "container-app-dev-task"
+      + family                   = "container-app-dev-app-task"
       + id                       = (known after apply)
       + memory                   = "512"
       + network_mode             = "awsvpc"
@@ -863,28 +837,28 @@ Terraform will perform the following actions:
       + revision                 = (known after apply)
       + skip_destroy             = false
       + tags                     = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-task"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-task"
+          + "Project"        = "container-app"
         }
       + tags_all                 = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-task"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-task"
+          + "Project"        = "container-app"
         }
       + task_role_arn            = (known after apply)
       + track_latest             = false
     }
 
-  # module.ecs.aws_iam_role.task will be created
+  # module.ecs_service.aws_iam_role.task will be created
   + resource "aws_iam_role" "task" {
       + arn                   = (known after apply)
       + assume_role_policy    = jsonencode(
@@ -906,31 +880,31 @@ Terraform will perform the following actions:
       + id                    = (known after apply)
       + managed_policy_arns   = (known after apply)
       + max_session_duration  = 3600
-      + name                  = "container-app-dev-ecs-task-role"
+      + name                  = "container-app-dev-app-ecs-task-role"
       + name_prefix           = (known after apply)
       + path                  = "/"
       + tags                  = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-ecs-task-role"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-ecs-task-role"
+          + "Project"        = "container-app"
         }
       + tags_all              = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-ecs-task-role"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-ecs-task-role"
+          + "Project"        = "container-app"
         }
       + unique_id             = (known after apply)
     }
 
-  # module.ecs.aws_iam_role.task_execution will be created
+  # module.ecs_service.aws_iam_role.task_execution will be created
   + resource "aws_iam_role" "task_execution" {
       + arn                   = (known after apply)
       + assume_role_policy    = jsonencode(
@@ -952,70 +926,70 @@ Terraform will perform the following actions:
       + id                    = (known after apply)
       + managed_policy_arns   = (known after apply)
       + max_session_duration  = 3600
-      + name                  = "container-app-dev-ecs-task-execution-role"
+      + name                  = "container-app-dev-app-ecs-task-execution-role"
       + name_prefix           = (known after apply)
       + path                  = "/"
       + tags                  = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-ecs-task-execution-role"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-ecs-task-execution-role"
+          + "Project"        = "container-app"
         }
       + tags_all              = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-ecs-task-execution-role"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-ecs-task-execution-role"
+          + "Project"        = "container-app"
         }
       + unique_id             = (known after apply)
     }
 
-  # module.ecs.aws_iam_role_policy_attachment.task_execution will be created
+  # module.ecs_service.aws_iam_role_policy_attachment.task_execution will be created
   + resource "aws_iam_role_policy_attachment" "task_execution" {
       + id         = (known after apply)
       + policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-      + role       = "container-app-dev-ecs-task-execution-role"
+      + role       = "container-app-dev-app-ecs-task-execution-role"
     }
 
-  # module.ecs.aws_security_group.ecs_tasks will be created
+  # module.ecs_service.aws_security_group.ecs_tasks will be created
   + resource "aws_security_group" "ecs_tasks" {
       + arn                    = (known after apply)
-      + description            = "Security group for ECS tasks in container-app-dev"
+      + description            = "Security group for ECS tasks in container-app-dev-app"
       + egress                 = (known after apply)
       + id                     = (known after apply)
       + ingress                = (known after apply)
-      + name                   = "container-app-dev-ecs-tasks-sg"
+      + name                   = "container-app-dev-app-ecs-tasks-sg"
       + name_prefix            = (known after apply)
       + owner_id               = (known after apply)
       + revoke_rules_on_delete = false
       + tags                   = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-ecs-tasks-sg"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-ecs-tasks-sg"
+          + "Project"        = "container-app"
         }
       + tags_all               = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "ecs"
-          + "Name"        = "container-app-dev-ecs-tasks-sg"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "App"            = "app"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-app-ecs-tasks-sg"
+          + "Project"        = "container-app"
         }
       + vpc_id                 = (known after apply)
     }
 
-  # module.ecs.aws_security_group_rule.egress will be created
+  # module.ecs_service.aws_security_group_rule.egress will be created
   + resource "aws_security_group_rule" "egress" {
       + cidr_blocks              = [
           + "0.0.0.0/0",
@@ -1032,7 +1006,7 @@ Terraform will perform the following actions:
       + type                     = "egress"
     }
 
-  # module.ecs.aws_security_group_rule.ingress will be created
+  # module.ecs_service.aws_security_group_rule.ingress will be created
   + resource "aws_security_group_rule" "ingress" {
       + cidr_blocks              = [
           + "10.0.0.0/8",
@@ -1046,6 +1020,293 @@ Terraform will perform the following actions:
       + self                     = false
       + source_security_group_id = (known after apply)
       + to_port                  = 80
+      + type                     = "ingress"
+    }
+
+  # module.ecs_service_api.aws_ecs_service.this will be created
+  + resource "aws_ecs_service" "this" {
+      + availability_zone_rebalancing      = "DISABLED"
+      + cluster                            = (known after apply)
+      + deployment_maximum_percent         = 200
+      + deployment_minimum_healthy_percent = 100
+      + desired_count                      = 2
+      + enable_ecs_managed_tags            = false
+      + enable_execute_command             = true
+      + iam_role                           = (known after apply)
+      + id                                 = (known after apply)
+      + launch_type                        = "FARGATE"
+      + name                               = "container-app-dev-api-service"
+      + platform_version                   = (known after apply)
+      + scheduling_strategy                = "REPLICA"
+      + tags                               = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-service"
+          + "Project"        = "container-app"
+        }
+      + tags_all                           = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-service"
+          + "Project"        = "container-app"
+        }
+      + task_definition                    = (known after apply)
+      + triggers                           = (known after apply)
+      + wait_for_steady_state              = false
+
+      + deployment_circuit_breaker {
+          + enable   = true
+          + rollback = true
+        }
+
+      + network_configuration {
+          + assign_public_ip = false
+          + security_groups  = (known after apply)
+          + subnets          = (known after apply)
+        }
+    }
+
+  # module.ecs_service_api.aws_ecs_task_definition.this will be created
+  + resource "aws_ecs_task_definition" "this" {
+      + arn                      = (known after apply)
+      + arn_without_revision     = (known after apply)
+      + container_definitions    = jsonencode(
+            [
+              + {
+                  + environment      = []
+                  + essential        = true
+                  + healthCheck      = {
+                      + command     = [
+                          + "CMD-SHELL",
+                          + "curl -f http://localhost:8080/health || exit 1",
+                        ]
+                      + interval    = 30
+                      + retries     = 3
+                      + startPeriod = 60
+                      + timeout     = 5
+                    }
+                  + image            = "nginxdemos/hello:latest"
+                  + logConfiguration = {
+                      + logDriver = "awslogs"
+                      + options   = {
+                          + awslogs-group         = "/ecs/container-app-dev"
+                          + awslogs-region        = "ap-southeast-1"
+                          + awslogs-stream-prefix = "ecs"
+                        }
+                    }
+                  + name             = "container-app-dev-api-container"
+                  + portMappings     = [
+                      + {
+                          + containerPort = 8080
+                          + hostPort      = 8080
+                          + protocol      = "tcp"
+                        },
+                    ]
+                },
+            ]
+        )
+      + cpu                      = "256"
+      + enable_fault_injection   = (known after apply)
+      + execution_role_arn       = (known after apply)
+      + family                   = "container-app-dev-api-task"
+      + id                       = (known after apply)
+      + memory                   = "512"
+      + network_mode             = "awsvpc"
+      + requires_compatibilities = [
+          + "FARGATE",
+        ]
+      + revision                 = (known after apply)
+      + skip_destroy             = false
+      + tags                     = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-task"
+          + "Project"        = "container-app"
+        }
+      + tags_all                 = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-task"
+          + "Project"        = "container-app"
+        }
+      + task_role_arn            = (known after apply)
+      + track_latest             = false
+    }
+
+  # module.ecs_service_api.aws_iam_role.task will be created
+  + resource "aws_iam_role" "task" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ecs-tasks.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "container-app-dev-api-ecs-task-role"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags                  = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-ecs-task-role"
+          + "Project"        = "container-app"
+        }
+      + tags_all              = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-ecs-task-role"
+          + "Project"        = "container-app"
+        }
+      + unique_id             = (known after apply)
+    }
+
+  # module.ecs_service_api.aws_iam_role.task_execution will be created
+  + resource "aws_iam_role" "task_execution" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ecs-tasks.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = false
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "container-app-dev-api-ecs-task-execution-role"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags                  = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-ecs-task-execution-role"
+          + "Project"        = "container-app"
+        }
+      + tags_all              = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-ecs-task-execution-role"
+          + "Project"        = "container-app"
+        }
+      + unique_id             = (known after apply)
+    }
+
+  # module.ecs_service_api.aws_iam_role_policy_attachment.task_execution will be created
+  + resource "aws_iam_role_policy_attachment" "task_execution" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+      + role       = "container-app-dev-api-ecs-task-execution-role"
+    }
+
+  # module.ecs_service_api.aws_security_group.ecs_tasks will be created
+  + resource "aws_security_group" "ecs_tasks" {
+      + arn                    = (known after apply)
+      + description            = "Security group for ECS tasks in container-app-dev-api"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = (known after apply)
+      + name                   = "container-app-dev-api-ecs-tasks-sg"
+      + name_prefix            = (known after apply)
+      + owner_id               = (known after apply)
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-ecs-tasks-sg"
+          + "Project"        = "container-app"
+        }
+      + tags_all               = {
+          + "App"            = "api"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "ecs"
+          + "Name"           = "container-app-dev-api-ecs-tasks-sg"
+          + "Project"        = "container-app"
+        }
+      + vpc_id                 = (known after apply)
+    }
+
+  # module.ecs_service_api.aws_security_group_rule.egress will be created
+  + resource "aws_security_group_rule" "egress" {
+      + cidr_blocks              = [
+          + "0.0.0.0/0",
+        ]
+      + description              = "Allow all outbound traffic"
+      + from_port                = 0
+      + id                       = (known after apply)
+      + protocol                 = "-1"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 0
+      + type                     = "egress"
+    }
+
+  # module.ecs_service_api.aws_security_group_rule.ingress will be created
+  + resource "aws_security_group_rule" "ingress" {
+      + cidr_blocks              = [
+          + "10.0.0.0/8",
+        ]
+      + description              = "Allow inbound traffic on container port 8080"
+      + from_port                = 8080
+      + id                       = (known after apply)
+      + protocol                 = "tcp"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 8080
       + type                     = "ingress"
     }
 
@@ -1069,22 +1330,20 @@ Terraform will perform the following actions:
       + public_ip            = (known after apply)
       + public_ipv4_pool     = (known after apply)
       + tags                 = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-nat-eip"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-nat-eip"
+          + "Project"        = "container-app"
         }
       + tags_all             = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-nat-eip"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-nat-eip"
+          + "Project"        = "container-app"
         }
       + vpc                  = (known after apply)
     }
@@ -1095,22 +1354,20 @@ Terraform will perform the following actions:
       + id       = (known after apply)
       + owner_id = (known after apply)
       + tags     = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-igw"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-igw"
+          + "Project"        = "container-app"
         }
       + tags_all = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-igw"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-igw"
+          + "Project"        = "container-app"
         }
       + vpc_id   = (known after apply)
     }
@@ -1128,22 +1385,20 @@ Terraform will perform the following actions:
       + secondary_private_ip_addresses     = (known after apply)
       + subnet_id                          = (known after apply)
       + tags                               = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-nat-gw"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-nat-gw"
+          + "Project"        = "container-app"
         }
       + tags_all                           = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-nat-gw"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-nat-gw"
+          + "Project"        = "container-app"
         }
     }
 
@@ -1171,22 +1426,20 @@ Terraform will perform the following actions:
             },
         ]
       + tags             = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-private-rt"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-private-rt"
+          + "Project"        = "container-app"
         }
       + tags_all         = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-private-rt"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-private-rt"
+          + "Project"        = "container-app"
         }
       + vpc_id           = (known after apply)
     }
@@ -1215,22 +1468,20 @@ Terraform will perform the following actions:
             },
         ]
       + tags             = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-public-rt"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-public-rt"
+          + "Project"        = "container-app"
         }
       + tags_all         = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-public-rt"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-public-rt"
+          + "Project"        = "container-app"
         }
       + vpc_id           = (known after apply)
     }
@@ -1280,24 +1531,22 @@ Terraform will perform the following actions:
       + owner_id                                       = (known after apply)
       + private_dns_hostname_type_on_launch            = (known after apply)
       + tags                                           = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-private-subnet-1"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
-          + "Type"        = "private"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-private-subnet-1"
+          + "Project"        = "container-app"
+          + "Type"           = "private"
         }
       + tags_all                                       = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-private-subnet-1"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
-          + "Type"        = "private"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-private-subnet-1"
+          + "Project"        = "container-app"
+          + "Type"           = "private"
         }
       + vpc_id                                         = (known after apply)
     }
@@ -1319,24 +1568,22 @@ Terraform will perform the following actions:
       + owner_id                                       = (known after apply)
       + private_dns_hostname_type_on_launch            = (known after apply)
       + tags                                           = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-private-subnet-2"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
-          + "Type"        = "private"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-private-subnet-2"
+          + "Project"        = "container-app"
+          + "Type"           = "private"
         }
       + tags_all                                       = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-private-subnet-2"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
-          + "Type"        = "private"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-private-subnet-2"
+          + "Project"        = "container-app"
+          + "Type"           = "private"
         }
       + vpc_id                                         = (known after apply)
     }
@@ -1358,24 +1605,22 @@ Terraform will perform the following actions:
       + owner_id                                       = (known after apply)
       + private_dns_hostname_type_on_launch            = (known after apply)
       + tags                                           = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-public-subnet-1"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
-          + "Type"        = "public"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-public-subnet-1"
+          + "Project"        = "container-app"
+          + "Type"           = "public"
         }
       + tags_all                                       = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-public-subnet-1"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
-          + "Type"        = "public"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-public-subnet-1"
+          + "Project"        = "container-app"
+          + "Type"           = "public"
         }
       + vpc_id                                         = (known after apply)
     }
@@ -1397,24 +1642,22 @@ Terraform will perform the following actions:
       + owner_id                                       = (known after apply)
       + private_dns_hostname_type_on_launch            = (known after apply)
       + tags                                           = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-public-subnet-2"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
-          + "Type"        = "public"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-public-subnet-2"
+          + "Project"        = "container-app"
+          + "Type"           = "public"
         }
       + tags_all                                       = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-public-subnet-2"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
-          + "Type"        = "public"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-public-subnet-2"
+          + "Project"        = "container-app"
+          + "Type"           = "public"
         }
       + vpc_id                                         = (known after apply)
     }
@@ -1438,26 +1681,24 @@ Terraform will perform the following actions:
       + main_route_table_id                  = (known after apply)
       + owner_id                             = (known after apply)
       + tags                                 = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-vpc"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-vpc"
+          + "Project"        = "container-app"
         }
       + tags_all                             = {
-          + "CostCenter"  = "Engineering"
-          + "Environment" = "dev"
-          + "ManagedBy"   = "terraform"
-          + "Module"      = "vpc"
-          + "Name"        = "container-app-dev-vpc"
-          + "Project"     = "container-app"
-          + "Team"        = "DevOps"
+          + "DeploymentType" = "devsecops-pipeline"
+          + "Environment"    = "dev"
+          + "ManagedBy"      = "terraform"
+          + "Module"         = "vpc"
+          + "Name"           = "container-app-dev-vpc"
+          + "Project"        = "container-app"
         }
     }
 
-Plan: 42 to add, 0 to change, 0 to destroy.
+Plan: 50 to add, 0 to change, 0 to destroy.
 
 Changes to Outputs:
   + alb_arn                  = (known after apply)
@@ -1467,7 +1708,7 @@ Changes to Outputs:
   + codepipeline_arn         = (known after apply)
   + codestar_connection_arn  = (known after apply)
   + ecs_cluster_name         = "container-app-dev-cluster"
-  + ecs_service_name         = "container-app-dev-service"
+  + ecs_service_name         = "container-app-dev-app-service"
   + nat_gateway_public_ip    = (known after apply)
   + pipeline_artifact_bucket = (known after apply)
   + private_subnet_ids       = [
