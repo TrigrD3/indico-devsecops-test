@@ -308,9 +308,12 @@ resource "aws_ecs_service" "this" {
     Name = "${local.name_prefix}-service"
   })
 
-  # Ignore changes to desired_count so that auto-scaling (if configured
-  # externally) does not cause perpetual diffs in Terraform plans.
+  # Ignore changes to desired_count and task_definition so that auto-scaling
+  # and CodePipeline deployments do not cause conflicts or rollbacks in Terraform.
   lifecycle {
-    ignore_changes = [desired_count]
+    ignore_changes = [
+      desired_count,
+      task_definition,
+    ]
   }
 }
