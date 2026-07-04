@@ -147,6 +147,17 @@ Each module contains its own documentation describing variables and outputs. Bel
 *   **[CodeBuild Module](./modules/codebuild/README.md)**: Deploys a Docker build environment featuring Local Layer Caching, dynamic IAM policy scanning (automatically grants Secrets Manager or parameter store reads based on defined env variables), and optional VPC integration for database migrations.
 *   **[CodePipeline Module](./modules/codepipeline/README.md)**: Wires the delivery pipeline with Source (GitHub via CodeStar connection), Build (CodeBuild), and Deploy (ECS Service deployment) stages. Includes a fully hardened S3 bucket with public access blocks, versioning, SSE-S3 encryption, and lifecycle management.
 
+## ⚠️ Important Disclaimer (Execution Status)
+
+> [!IMPORTANT]
+> **Deployment Status: Dry-Run Verified Only**
+>
+> This infrastructure code has **never been applied (`terraform apply`) to a live AWS environment** due to cost and sandbox environment limitations.
+>
+> **Syntax and Plan Validation:** The HCL syntax, provider versions, and module relationships have been fully verified using `terraform validate` and `tflint` (returning 0 errors). A complete dry-run execution plan has been compiled successfully and is saved in [tfplan.txt](tfplan.txt) with **zero compile or planning errors**.
+>
+> **Runtime Actions:** Because the code has not been applied live, there is no guarantee that runtime pipeline stages (such as completing the manual AWS CodeStar Connections OAuth handshake with GitHub, ECR image push validations, or dynamic ECS Task health checks) will execute without operational or role-permission adjustments in the target AWS account.
+
 ---
 
 ## ⚙️ Prerequisites
@@ -186,12 +197,19 @@ Install the AWS provider, modules, and initialize state backend:
 terraform init
 ```
 
-### 4. Code Quality & Format Checks
-Run syntax checks and auto-format files to verify HCL integrity:
-```bash
-terraform fmt -recursive
-terraform validate
-```
+### 4. Code Quality, Format & Linting Checks
+Verify the HCL configuration formatting, validation, and static analysis:
+1.  **HCL Syntax & Formatting:**
+    ```bash
+    terraform fmt -recursive
+    terraform validate
+    ```
+2.  **Static Analysis & Linting (TFLint):**
+    Initialize the AWS ruleset plugins and execute the lint check recursively across all submodules:
+    ```bash
+    tflint --init
+    tflint --recursive
+    ```
 
 ### 5. Local Buildspec Validation (Dry-Run)
 You can validate the `buildspec.yml` file locally on your development machine using the AWS CodeBuild Local Agent:
@@ -220,17 +238,45 @@ terraform plan -out=tfplan.binary
 terraform show -no-color tfplan.binary > tfplan.txt
 ```
 
-### 6. Deploy Infrastructure
+### 7. Cost Estimation (Infracost)
+Scan the HCL code to project estimated monthly AWS costs and check FinOps compliance policies:
+1.  **Install Infracost:**
+    *   **macOS:** `brew install infracost`
+    *   **Linux/WSL:** `curl -fsSL https://raw.githubusercontent.com/infracost/infracost/master/scripts/install.sh | sh`
+2.  **Authenticate & Populate Local Cache:**
+    ```bash
+    infracost auth login
+    infracost scan .
+    ```
+3.  **Inspect Resource Costs & Policy Violations:**
+    ```bash
+    infracost inspect --group-by resource
+    infracost inspect --failing
+    ```
+
+#### 💵 Current Cost Estimation Baseline
+
+Based on the dry-run scan results (19 costed resources, 31 free), the projected monthly AWS baseline cost is **~$106.00**:
+
+| Resource | Count | Monthly Cost | Cost Description |
+| :--- | :---: | :---: | :--- |
+| `module.vpc[0].aws_nat_gateway.this` | 1 | $43.00 | NAT Gateway hourly base charge |
+| `module.ecs_service_api.aws_ecs_service.this` | 1 | $22.00 | API Service Tasks (Fargate CPU/Memory allocation) |
+| `module.ecs_service.aws_ecs_service.this` | 1 | $22.00 | App Service Tasks (Fargate CPU/Memory allocation) |
+| `module.alb.aws_lb.this` | 1 | $18.00 | ALB hourly base charge |
+| **Total Estimated Monthly Baseline** | | **$105.00** | *(Rounded to $106.00 by Infracost Scan)* |
+
+### 8. Deploy Infrastructure
 Apply the configuration:
 ```bash
 terraform apply tfplan.binary
 ```
 
-### 7. Post-Deployment CodeStar Connection Handshake
-CodePipeline will pause at the **Source** stage until you authorize the CodeStar connection.
+### 9. Post-Deployment CodeStar Connection Handshake
+CodePipeline will pause at the **Source** stage until you authorize the CodeStar connection:
 1.  Log in to the **AWS Console** and navigate to **Developer Tools** -> **Connections**.
 2.  Find the newly created connection (named `${project_name}-${environment}-github`).
-3.  Click **Update pending connection** and follow the prompt to authorize AWS to access your GitHub account/repositories.
+3.  Click **Update pending connection** and follow the prompt to authorize AWS to access the GitHub repository.
 4.  Once the status changes to `Available`, the pipeline will automatically trigger.
 
 ---
