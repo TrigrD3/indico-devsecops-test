@@ -1,57 +1,26 @@
-# ECS Terraform Module
+# ECS Service Terraform Module
 
-Production-ready Terraform module for deploying containerized applications on **AWS ECS Fargate**.
+Production-ready Terraform module for deploying containerized applications on **AWS ECS Fargate** using a shared ECS Cluster.
 
-## Architecture
+---
 
-```
-                          ┌──────────────────────────────────┐
-                          │         ECS Cluster              │
-                          │   (Container Insights enabled)   │
-                          │                                  │
-                          │  ┌────────────────────────────┐  │
-                          │  │       ECS Service           │  │
-                          │  │  • Circuit breaker          │  │
-                          │  │  • Rolling deployment       │  │
-  ALB/NLB ──(optional)──▶ │  │  • ECS Exec support        │  │
-                          │  │                            │  │
-                          │  │  ┌──────────────────────┐  │  │
-                          │  │  │   Fargate Task(s)    │  │  │
-                          │  │  │  ┌────────────────┐  │  │  │
-                          │  │  │  │   Container    │  │  │  │
-                          │  │  │  │  • Health chk  │──┼──┼──┼──▶ CloudWatch Logs
-                          │  │  │  │  • Env vars    │  │  │  │
-                          │  │  │  └────────────────┘  │  │  │
-                          │  │  └──────────────────────┘  │  │
-                          │  └────────────────────────────┘  │
-                          └──────────────────────────────────┘
-                                        │
-                          ┌─────────────┼─────────────┐
-                          │             │             │
-                    Security Group  Task Exec Role  Task Role
-                    (ingress/egress)  (ECR, Logs)   (App perms)
-```
+## 🏛️ Architecture & Resources Created
 
-## Features
+This module provisions application-level resources for a Fargate service:
+*   **ECS Service** (`aws_ecs_service`): Manages task lifecycle, rolling updates, and deployments.
+*   **ECS Task Definition** (`aws_ecs_task_definition`): Specifies the container configurations (image, ports, env, logs, health checks).
+*   **Security Group** (`aws_security_group`): Hardened firewall allowing ingress only on the container port.
+*   **IAM Execution Role** (`aws_iam_role`): Grants the ECS agent permissions to pull images from ECR and write logs to CloudWatch.
+*   **IAM Task Role** (`aws_iam_role`): Grants the containerized application permissions to call AWS APIs.
 
-| Feature | Description |
-|---|---|
-| **Fargate** | Serverless compute — no EC2 instances to manage |
-| **Fargate Spot** | Cost-optimized capacity provider strategy (configurable) |
-| **Container Insights** | Cluster-level metrics and log collection |
-| **Circuit Breaker** | Automatic rollback on failed deployments |
-| **ECS Exec** | Optional interactive container debugging |
-| **Load Balancer** | Optional ALB/NLB target group integration |
-| **IAM Least Privilege** | Separate execution role (infra) and task role (app) |
-| **Health Checks** | Configurable HTTP health check path |
+---
 
-## Usage
+## 🚀 Usage
 
 ### Minimal Example
-
 ```hcl
-module "ecs" {
-  source = "./modules/ecs"
+module "ecs_service" {
+  source = "../ecs-service"
 
   project_name    = "my-project"
   environment     = "dev"
@@ -65,14 +34,17 @@ module "ecs" {
 }
 ```
 
-### Production Example with ALB
-
+### Production Example with ALB & IAM
 ```hcl
-module "ecs" {
-  source = "./modules/ecs"
+module "ecs_service" {
+  source = "../ecs-service"
 
   project_name    = "payment-service"
   environment     = "production"
+  app_name        = "api"
+  cluster_id      = module.ecs_cluster.cluster_id
+  cluster_name    = module.ecs_cluster.cluster_name
+  log_group_name  = module.ecs_cluster.log_group_name
   vpc_id          = module.vpc.vpc_id
   subnet_ids      = module.vpc.private_subnet_ids
   container_image = "123456789012.dkr.ecr.us-east-1.amazonaws.com/payment-service:v2.1.0"
@@ -90,54 +62,35 @@ module "ecs" {
   container_port      = 8080
   allowed_cidr_blocks = ["10.0.0.0/16"]
   target_group_arn    = module.alb.target_group_arn
-
-  # Application config
-  container_environment = {
-    DATABASE_URL = "postgresql://db.internal:5432/payments"
-    LOG_LEVEL    = "info"
-    REGION       = "us-east-1"
-  }
-
-  health_check_path = "/healthz"
+  health_check_path   = "/healthz"
 
   # Debugging
-  enable_execute_command = false
-
-  # Logging
-  log_retention_in_days = 90
+  enable_execute_command = true
 
   # Application-level IAM policies
   task_role_policy_arns = [
-    "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
-    aws_iam_policy.payment_secrets.arn,
-  ]
-
-  # Capacity strategy: prioritise Spot for cost savings
-  default_capacity_provider_strategy = [
-    { capacity_provider = "FARGATE",      weight = 1, base = 2 },
-    { capacity_provider = "FARGATE_SPOT", weight = 3, base = 0 },
+    "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
   ]
 
   tags = {
-    Team        = "platform"
-    CostCenter  = "eng-1234"
+    Team       = "platform"
+    CostCenter = "eng-1234"
   }
 }
 ```
 
-## Requirements
+---
 
-| Name | Version |
-|------|---------|
-| Terraform | >= 1.0 |
-| AWS Provider | >= 5.0 |
-
-## Inputs
+## ⚙️ Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+|:---|:---|:---|:---|:---:|
 | `project_name` | Project name prefix for all resources | `string` | — | ✅ |
 | `environment` | Deployment environment (`dev`, `staging`, `production`) | `string` | — | ✅ |
+| `app_name` | Name of this application service | `string` | `"app"` | ❌ |
+| `cluster_id` | ID of the shared ECS cluster | `string` | — | ✅ |
+| `cluster_name` | Name of the shared ECS cluster | `string` | — | ✅ |
+| `log_group_name` | Name of the shared CloudWatch log group | `string` | — | ✅ |
 | `vpc_id` | VPC ID for ECS resources | `string` | — | ✅ |
 | `subnet_ids` | Subnet IDs for service networking | `list(string)` | — | ✅ |
 | `container_image` | Docker image URI | `string` | — | ✅ |
@@ -151,20 +104,19 @@ module "ecs" {
 | `max_percent` | Max % during deployment | `number` | `200` | ❌ |
 | `enable_execute_command` | Enable ECS Exec | `bool` | `false` | ❌ |
 | `target_group_arn` | ALB/NLB target group ARN | `string` | `""` | ❌ |
-| `capacity_providers` | Cluster capacity providers | `list(string)` | `["FARGATE", "FARGATE_SPOT"]` | ❌ |
-| `default_capacity_provider_strategy` | Default capacity provider strategy | `list(object)` | See variables.tf | ❌ |
-| `log_retention_in_days` | CloudWatch log retention | `number` | `30` | ❌ |
 | `task_role_policy_arns` | Additional IAM policies for task role | `list(string)` | `[]` | ❌ |
 | `allowed_cidr_blocks` | CIDR blocks allowed on container port | `list(string)` | `["10.0.0.0/8"]` | ❌ |
 | `tags` | Additional tags for all resources | `map(string)` | `{}` | ❌ |
 
-## Outputs
+---
+
+## 📤 Outputs
 
 | Name | Description |
-|------|-------------|
-| `cluster_id` | ECS cluster ID |
-| `cluster_arn` | ECS cluster ARN |
-| `cluster_name` | ECS cluster name |
+|:---|:---|
+| `cluster_id` | Shared ECS cluster ID |
+| `cluster_arn` | Shared ECS cluster ARN |
+| `cluster_name` | Shared ECS cluster name |
 | `service_id` | ECS service ID |
 | `service_name` | ECS service name |
 | `task_definition_arn` | Task definition ARN (includes revision) |
@@ -173,31 +125,12 @@ module "ecs" {
 | `security_group_id` | Security group ID for ECS tasks |
 | `task_execution_role_arn` | Task execution role ARN |
 | `task_role_arn` | Task role ARN |
-| `log_group_name` | CloudWatch log group name |
+| `log_group_name` | Shared CloudWatch log group name |
 
-## Design Decisions
+---
 
-### Why separate Execution Role and Task Role?
+## 🔒 Security Best Practices Implemented
 
-Following the **principle of least privilege**:
-
-- **Execution Role** — used by the ECS *agent* to pull images from ECR and push logs to CloudWatch. Scoped to infra operations only.
-- **Task Role** — assumed by the *application container* at runtime. Receives only the permissions the app needs (S3, DynamoDB, etc.) via `task_role_policy_arns`.
-
-### Why `lifecycle { ignore_changes = [desired_count] }`?
-
-If you configure auto-scaling outside this module (e.g., via `aws_appautoscaling_target`), the actual running count will diverge from `desired_count`. Without `ignore_changes`, every `terraform plan` would show a diff and attempt to reset the count.
-
-### Why Circuit Breaker with Rollback?
-
-The deployment circuit breaker detects when new tasks fail to stabilise and **automatically rolls back** to the last healthy deployment. This prevents a bad image push from taking down the service.
-
-## Security Considerations
-
-- **No public IP** — Tasks are launched with `assign_public_ip = false`. Place them in private subnets with a NAT gateway for outbound access.
-- **Scoped ingress** — The security group only allows traffic on the container port from `allowed_cidr_blocks`.
-- **Full egress** — Required for ECR image pulls and CloudWatch API calls. Restrict further with VPC endpoints if needed.
-
-## License
-
-Internal use — Indico DevSecOps.
+1.  **Least-Privilege Role Separation:** Splits task execution permissions (pulling images, writing logs) from task application permissions to prevent privilege escalation.
+2.  **Network Isolation:** Tasks are deployed inside private VPC subnets. The task Security Group only allows ingress traffic from specified CIDR blocks on the container port.
+3.  **Circuit Breaker Rollbacks:** Prevents broken releases from taking down active service containers by rolling back automatically on failure.
